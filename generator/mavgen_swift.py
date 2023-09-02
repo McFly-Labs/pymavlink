@@ -5,7 +5,7 @@ Parse a MAVLink protocol XML file and generate Swift implementation
 Copyright Max Odnovolyk 2015
 Released under GNU GPL version 3 or later
 """
-from __future__ import print_function
+
 
 import os
 from . import mavparse, mavtemplate
@@ -135,7 +135,7 @@ def append_static_code(filename, outf):
     basepath = os.path.dirname(os.path.realpath(__file__))
     filepath = os.path.join(basepath, 'swift/%s' % filename)
     
-    print("Appending content of %s" % filename)
+    print(("Appending content of %s" % filename))
     
     with open(filepath) as inf:
         for line in inf:

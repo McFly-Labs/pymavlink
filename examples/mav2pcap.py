@@ -14,7 +14,7 @@
 # dependency: Python construct library (python-construct on Debian/Ubuntu), "easy_install construct" elsewhere
 
 
-from __future__ import print_function
+
 from future import standard_library
 standard_library.install_aliases()
 from builtins import object

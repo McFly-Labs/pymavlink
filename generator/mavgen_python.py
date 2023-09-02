@@ -5,7 +5,7 @@ parse a MAVLink protocol XML file and generate a python implementation
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 
 from builtins import range
 
@@ -897,7 +897,7 @@ def generate(basename, xml):
             n = m.order_map[i]
             m.len_map[n] = m.fieldlengths[i]
 
-    print("Generating %s" % filename)
+    print(("Generating %s" % filename))
     outf = open(filename, "w")
     generate_preamble(outf, msgs, basename, filelist, xml[0])
     generate_enums(outf, enums)
@@ -906,4 +906,4 @@ def generate(basename, xml):
     generate_mavlink_class(outf, msgs, xml[0])
     generate_methods(outf, msgs)
     outf.close()
-    print("Generated %s OK" % filename)
+    print(("Generated %s OK" % filename))

@@ -5,7 +5,7 @@ parse a MAVLink protocol XML file and generate an Objective-C implementation
 Copyright John Boiles 2013
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 
 import os
 from . import mavparse, mavtemplate
@@ -333,7 +333,7 @@ def generate_shared(basename, xml_list):
     template_dict['message'] = []
     template_dict['message_definition_files'] = []
 
-    print("Generating Objective-C implementation in directory %s" % basename)
+    print(("Generating Objective-C implementation in directory %s" % basename))
     mavparse.mkdir_p(basename)
 
     for xml in xml_list:
@@ -360,7 +360,7 @@ def generate_message_definitions(basename, xml):
 
     directory = os.path.join(basename, xml.basename)
 
-    print("Generating Objective-C implementation in directory %s" % directory)
+    print(("Generating Objective-C implementation in directory %s" % directory))
     mavparse.mkdir_p(directory)
 
     xml.basename_camel_case = camel_case_from_underscores(xml.basename)
@@ -396,7 +396,7 @@ def generate_message_definitions(basename, xml):
                 elif f.type.startswith('char'):
                     f.print_format = "%c"
                 else:
-                    print("print_format unsupported for type %s" % f.type)
+                    print(("print_format unsupported for type %s" % f.type))
             if f.array_length != 0:
                 f.get_message = '@"[array of %s[%d]]"' % (f.type, f.array_length)
                 f.array_prefix = ' *'

@@ -8,7 +8,7 @@ Released under GNU GPL version 3 or later
 
 '''
 
-from __future__ import print_function
+
 from future import standard_library
 standard_library.install_aliases()
 from builtins import object
@@ -16,6 +16,7 @@ import os
 import re
 import sys
 from . import mavparse
+
 
 # XSD schema file
 schemaFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "mavschema.xsd")
@@ -54,10 +55,10 @@ def mavgen(opts, args):
                         elem.set("type", "xs:string")
                 xmlschema = etree.XMLSchema(xmlschema_root)
         except ImportError:
-            print("WARNING: Failed to import lxml module etree. Are lxml, libxml2 and libxslt installed? XML validation will not be performed", file=sys.stderr)
+            print("WARNING: Failed to import lxml module etree. Are lxml, libxml2 and libxslt installed? XML validation will not be performed", file = sys.stderr)
             opts.validate = False
         except etree.XMLSyntaxError as err:
-            print("WARNING: XML Syntax Errors detected in %s XML schema file. XML validation will not be performed" % schemaFile, file=sys.stderr)
+            print("WARNING: XML Syntax Errors detected in %s XML schema file. XML validation will not be performed" % schemaFile, file = sys.stderr)
             print(str(err.error_log), file=sys.stderr)
             opts.validate = False
         except:
@@ -229,7 +230,7 @@ def mavgen_python_dialect(dialect, wire_protocol):
 
     # Python 2 to 3 compatibility
     try:
-        import StringIO as io
+        import io as io
     except ImportError:
         import io
 

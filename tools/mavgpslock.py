@@ -3,7 +3,7 @@
 '''
 show GPS lock events in a MAVLink log
 '''
-from __future__ import print_function
+
 
 import time
 

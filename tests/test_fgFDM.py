@@ -5,7 +5,7 @@
 Unit tests for the fgFDM library
 """
 
-from __future__ import print_function
+
 import unittest
 
 from pymavlink.fgFDM import fgFDMError, fgFDMVariable, fgFDMVariableList, fgFDM

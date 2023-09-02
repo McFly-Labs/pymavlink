@@ -5,7 +5,7 @@ mavlink python parse functions
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 from builtins import range
 from builtins import object
 
@@ -224,7 +224,7 @@ class MAVXML(object):
             self.allow_extensions = True
         else:
             print("Unknown wire protocol version")
-            print("Available versions are: %s %s" % (PROTOCOL_0_9, PROTOCOL_1_0, PROTOCOL_2_0))
+            print(("Available versions are: %s %s" % (PROTOCOL_0_9, PROTOCOL_1_0, PROTOCOL_2_0)))
             raise MAVParseError('Unknown MAVLink wire protocol version %s' % wire_protocol_version)
 
         in_element_list = []
@@ -326,9 +326,9 @@ class MAVXML(object):
         for current_enum in self.enum:
             if not 'MAV_CMD' in current_enum.name:
                 continue
-            print(current_enum.name)
+            print((current_enum.name))
             for enum_entry in current_enum.entry:
-                print(enum_entry.name)
+                print((enum_entry.name))
                 if len(enum_entry.param) == 7:
                     continue
                 params_dict=dict()
@@ -338,7 +338,7 @@ class MAVXML(object):
 
                 for a_param in enum_entry.param:
                     params_dict[int(a_param.index)] = a_param
-                enum_entry.param=params_dict.values()
+                enum_entry.param=list(params_dict.values())
                 
 
 
@@ -358,7 +358,7 @@ class MAVXML(object):
                 if m.id <= 255:
                     m2.append(m)
                 else:
-                    print("Ignoring MAVLink2 message %s" % m.name)
+                    print(("Ignoring MAVLink2 message %s" % m.name))
             self.message = m2
 
         for m in self.message:
@@ -432,7 +432,7 @@ class MAVXML(object):
                 self.largest_payload = m.wire_length
 
             if m.wire_length+8 > 64:
-                print("Note: message %s is longer than 64 bytes long (%u bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit." % (m.name, m.wire_length+8))
+                print(("Note: message %s is longer than 64 bytes long (%u bytes), which can cause fragmentation since many radio modems use 64 bytes as maximum air transfer unit." % (m.name, m.wire_length+8)))
 
     def __str__(self):
         return "MAVXML for %s from %s (%u message, %u enums)" % (
@@ -475,7 +475,7 @@ def merge_enums(xml):
                 emapitem.entry.extend(enum.entry)
                 if not emapitem.description:
                     emapitem.description = enum.description
-                print("Merged enum %s" % enum.name)
+                print(("Merged enum %s" % enum.name))
             else:
                 newenums.append(enum)
                 emap[enum.name] = enum
@@ -501,41 +501,41 @@ def check_duplicates(xml):
         for m in x.message:
             key = m.id
             if key in msgmap:
-                print("ERROR: Duplicate message id %u for %s (%s:%u) also used by %s" % (
+                print(("ERROR: Duplicate message id %u for %s (%s:%u) also used by %s" % (
                     m.id,
                     m.name,
                     x.filename, m.linenumber,
-                    msgmap[key]))
+                    msgmap[key])))
                 return True
             fieldset = set()
             for f in m.fields:
                 if f.name in fieldset:
-                    print("ERROR: Duplicate field %s in message %s (%s:%u)" % (
+                    print(("ERROR: Duplicate field %s in message %s (%s:%u)" % (
                         f.name, m.name,
-                        x.filename, m.linenumber))
+                        x.filename, m.linenumber)))
                     return True
                 fieldset.add(f.name)
             msgmap[key] = '%s (%s:%u)' % (m.name, x.filename, m.linenumber)
             # Check for duplicate message names
             if m.name in msg_name_map:
-                print("ERROR: Duplicate message name %s for id:%u (%s:%u) also used by %s" % (
+                print(("ERROR: Duplicate message name %s for id:%u (%s:%u) also used by %s" % (
                     m.name,
                     m.id,
                     x.filename, m.linenumber,
-                    msg_name_map[m.name]))
+                    msg_name_map[m.name])))
                 return True
             msg_name_map[m.name] = '%s (%s:%u)' % (m.id, x.filename, m.linenumber)
         for enum in x.enum:
             for entry in enum.entry:
                 if entry.autovalue is True and "common.xml" not in entry.origin_file:
-                    print("Note: An enum value was auto-generated: %s = %u" % (entry.name, entry.value))
+                    print(("Note: An enum value was auto-generated: %s = %u" % (entry.name, entry.value)))
                 s1 = "%s.%s" % (enum.name, entry.name)
                 s2 = "%s.%s" % (enum.name, entry.value)
                 if s1 in enummap or s2 in enummap:
-                    print("ERROR: Duplicate enum %s:\n\t%s = %s @ %s:%u\n\t%s" % (
+                    print(("ERROR: Duplicate enum %s:\n\t%s = %s @ %s:%u\n\t%s" % (
                         "names" if s1 in enummap else "values",
                         s1, entry.value, entry.origin_file, entry.origin_line,
-                        enummap.get(s1) or enummap.get(s2)))
+                        enummap.get(s1) or enummap.get(s2))))
                     return True
                 enummap[s1] = enummap[s2] = "%s.%s = %s @ %s:%u" % (enum.name, entry.name, entry.value, entry.origin_file, entry.origin_line)
 

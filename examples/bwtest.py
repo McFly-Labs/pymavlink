@@ -3,7 +3,7 @@
 '''
 check bandwidth of link
 '''
-from __future__ import print_function
+
 import time
 
 from pymavlink import mavutil

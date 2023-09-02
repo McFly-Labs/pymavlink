@@ -6,7 +6,7 @@ assumed to be in the format that qgroundcontrol uses, which consists
 of a series of MAVLink packets, each with a 64 bit timestamp
 header. The timestamp is in microseconds since 1970 (unix epoch)
 '''
-from __future__ import print_function
+
 
 import array
 import fnmatch
@@ -127,7 +127,7 @@ available_types = set()
 # for DF logs pre-calculate types list
 match_types=None
 if types is not None and hasattr(mlog, 'name_to_id'):
-    for k in mlog.name_to_id.keys():
+    for k in list(mlog.name_to_id.keys()):
         if match_type(k, types):
             if nottypes is not None and match_type(k, nottypes):
                 continue
@@ -220,7 +220,7 @@ while True:
             meta["srcComponent"] = m.get_srcComponent()
 
         # convert any array.array (e.g. packed-16-bit fft readings) into lists:
-        for key in data.keys():
+        for key in list(data.keys()):
             if type(data[key]) == array.array:
                 data[key] = list(data[key])
         outMsg = {"meta": meta, "data": data}

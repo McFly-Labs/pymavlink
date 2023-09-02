@@ -3,7 +3,7 @@
 '''
 extract ISBH and ISBD messages from AP_Logging files and produce FFT plots
 '''
-from __future__ import print_function
+
 
 import numpy
 import os

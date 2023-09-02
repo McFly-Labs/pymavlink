@@ -7,7 +7,7 @@ Released under GNU GPL version 3 or later
 
 Partly based on SDLog2Parser by Anton Babushkin
 '''
-from __future__ import print_function
+
 from builtins import range
 from builtins import object
 
@@ -23,7 +23,7 @@ import sys
 from . import mavutil
 
 try:
-    long        # Python 2 has long
+    int        # Python 2 has long
 except NameError:
     long = int  # But Python 3 does not
 
@@ -46,8 +46,8 @@ FORMAT_TO_STRUCT = {
     "L": ("i", 1.0e-7, float),
     "d": ("d", None, float),
     "M": ("b", None, int),
-    "q": ("q", None, long),  # Backward compat
-    "Q": ("Q", None, long),  # Backward compat
+    "q": ("q", None, int),  # Backward compat
+    "Q": ("Q", None, int),  # Backward compat
     }
 
 def u_ord(c):
@@ -111,7 +111,7 @@ def to_string(s):
         pass
     try:
         s2 = s.encode('utf-8', 'ignore')
-        x = u"%s" % s2
+        x = "%s" % s2
         return s2
     except Exception:
         pass
@@ -122,7 +122,7 @@ def to_string(s):
             r2 = r + s[0]
             s = s[1:]
             r2 = r2.encode('ascii', 'ignore')
-            x = u"%s" % r2
+            x = "%s" % r2
             r = r2
         except Exception:
             break
@@ -205,7 +205,7 @@ class DFMessage(object):
                 name = 'ModeNum'
             v = self.__getattr__(name)
             if is_py2:
-                if isinstance(v,unicode): # NOQA
+                if isinstance(v,str): # NOQA
                     v = str(v)
             else:
                 if isinstance(v,str):
@@ -979,7 +979,7 @@ class DFReader_text(DFReader):
                 progress_callback(new_pct)
                 pct = new_pct
 
-        for mtype in self.counts.keys():
+        for mtype in list(self.counts.keys()):
             self._count += self.counts[mtype]
         self.offset = 0
 
@@ -1078,7 +1078,7 @@ class DFReader_text(DFReader):
     def last_timestamp(self):
         '''get the last timestamp in the log'''
         highest_offset = 0
-        for mtype in self.counts.keys():
+        for mtype in list(self.counts.keys()):
             if len(self.offsets[mtype]) == 0:
                 continue
             ofs = self.offsets[mtype][-1]

@@ -5,7 +5,7 @@ mavlink python utility functions
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 from builtins import object
 
 import socket, math, struct, time, os, fnmatch, array, sys, errno
@@ -353,7 +353,7 @@ class mavfile(object):
 
         if src_tuple == radio_tuple:
             # as a special case radio msgs are added for all sysids
-            for s in self.sysid_state.keys():
+            for s in list(self.sysid_state.keys()):
                 self.sysid_state[s].messages[type] = msg
 
         if not (src_tuple == radio_tuple or msg.get_type() == 'BAD_DATA'):
@@ -631,7 +631,7 @@ class mavfile(object):
             map = mode_mapping_sub
         if map is None:
             return None
-        inv_map = dict((a, b) for (b, a) in map.items())
+        inv_map = dict((a, b) for (b, a) in list(map.items()))
         return inv_map
 
     def set_mode_apm(self, mode, custom_mode = 0, custom_sub_mode = 0):
@@ -2041,7 +2041,7 @@ def mode_mapping_byname(mav_type):
         map = mode_mapping_sub
     if map is None:
         return None
-    inv_map = dict((a, b) for (b, a) in map.items())
+    inv_map = dict((a, b) for (b, a) in list(map.items()))
     return inv_map
 
 def mode_mapping_bynumber(mav_type):

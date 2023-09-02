@@ -5,7 +5,7 @@
 Unit tests for the rotmat library
 """
 
-from __future__ import absolute_import, division, print_function
+
 from math import radians, degrees
 import unittest
 import random

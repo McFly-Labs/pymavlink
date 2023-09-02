@@ -3,7 +3,7 @@
 '''
 show accel calibration for a set of logs
 '''
-from __future__ import print_function
+
 
 from argparse import ArgumentParser
 parser = ArgumentParser()

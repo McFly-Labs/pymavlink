@@ -3,7 +3,7 @@
 '''
 fit best estimate of magnetometer offsets
 '''
-from __future__ import print_function
+
 
 import sys, time, os, math
 

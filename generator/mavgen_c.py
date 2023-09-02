@@ -5,7 +5,7 @@ parse a MAVLink protocol XML file and generate a C implementation
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 from future.utils import iteritems
 
 from builtins import range
@@ -527,7 +527,7 @@ def copy_fixed_headers(directory, xml):
         }
     basepath = os.path.dirname(os.path.realpath(__file__))
     srcpath = os.path.join(basepath, 'C/include_v%s' % xml.wire_protocol_version)
-    print("Copying fixed headers for protocol %s to %s" % (xml.wire_protocol_version, directory))
+    print(("Copying fixed headers for protocol %s to %s" % (xml.wire_protocol_version, directory)))
     for h in hlist[xml.wire_protocol_version]:
         src = os.path.realpath(os.path.join(srcpath, h))
         dest = os.path.realpath(os.path.join(directory, h))
@@ -544,7 +544,7 @@ def generate_one(basename, xml):
 
     directory = os.path.join(basename, xml.basename)
 
-    print("Generating C implementation in directory %s" % directory)
+    print(("Generating C implementation in directory %s" % directory))
     mavparse.mkdir_p(directory)
 
     if xml.little_endian:

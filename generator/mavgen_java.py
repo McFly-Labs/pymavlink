@@ -5,7 +5,7 @@
     Copyright Andrew Tridgell 2011
     Released under GNU GPL version 3 or later
     '''
-from __future__ import print_function
+
 
 from builtins import range
 from builtins import object
@@ -455,7 +455,7 @@ def generate_one(basename, xml):
     
     directory = os.path.join(basename, xml.basename)
     
-    print("Generating Java implementation in directory %s" % directory)
+    print(("Generating Java implementation in directory %s" % directory))
     mavparse.mkdir_p(directory)
     
     if xml.little_endian:

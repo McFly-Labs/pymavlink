@@ -4,7 +4,7 @@ parse a MAVLink protocol XML file and generate a CSharp implementation
 
 
 '''
-from __future__ import print_function
+
 
 from builtins import range
 import os
@@ -276,7 +276,7 @@ def generate(basename, xml):
         for i in range(0, len(m.fieldnames)):
             m.order_map[i] = m.ordered_fieldnames.index(m.fieldnames[i])
         
-    print("Generating messages file: %s" % structsfilename)
+    print(("Generating messages file: %s" % structsfilename))
     dir = os.path.dirname(structsfilename)
     if not os.path.exists(dir):
         os.makedirs(dir)
@@ -342,8 +342,8 @@ using System.Reflection;
     res = os.system (compileCommand)
     
     if res == 0:
-        print("Generated %s OK" % outputLibraryPath)
+        print(("Generated %s OK" % outputLibraryPath))
     else:
         print("Error")
-        print("Error: Compilation failed. (" + str(res) + ")")
+        print(("Error: Compilation failed. (" + str(res) + ")"))
         raise SystemError("Compilation failed. (" + str(res) + ")")

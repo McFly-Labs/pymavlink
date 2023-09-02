@@ -3,7 +3,7 @@
 graph a MAVLink log file
 Andrew Tridgell August 2011
 '''
-from __future__ import print_function
+
 from builtins import input
 from builtins import range
 
@@ -303,7 +303,7 @@ for fi in range(0, len(filenames)):
 if args.output is None:
     pylab.show()
     pylab.draw()
-    input('press enter to exit....')
+    eval(input('press enter to exit....'))
 else:
     fname, fext = os.path.splitext(args.output)
     if fext == '.html':

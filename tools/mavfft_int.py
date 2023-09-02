@@ -3,7 +3,7 @@
 '''
 interactively select accel and gyro data for FFT analysis
 '''
-from __future__ import print_function
+
 
 import numpy
 import pylab
@@ -136,8 +136,8 @@ def fft(logfile):
             print('select sample range for fft analysis')
             preview.canvas.set_window_title('select sample range')
             try:
-                s_start = input('start sample: ')
-                s_end = input('end sample: ')
+                s_start = eval(input('start sample: '))
+                s_end = eval(input('end sample: '))
                 currentAxes.set_xlim(s_start, s_end)
             except:
                 break
@@ -213,7 +213,7 @@ def fft(logfile):
             fftwin.savefig(msg + '_fft.png')
         
         try:
-            selection = raw_input('q to proceed to next file, anything else to select a new range: ')
+            selection = input('q to proceed to next file, anything else to select a new range: ')
             print(selection)
         except:
             continue

@@ -3,7 +3,7 @@
 '''
 search a set of log files for bad accel values
 '''
-from __future__ import print_function
+
 from builtins import input
 from builtins import range
 
@@ -121,7 +121,7 @@ for i in range(len(filelist)):
 
 if len(found) == 0:
     print("No matching files found - all OK!")
-    input('Press enter to close')
+    eval(input('Press enter to close'))
     sys.exit(0)
 
 print("Creating zip file %s" % results)
@@ -132,7 +132,7 @@ except Exception:
     print("Please send matching files manually")
     for f in found:
         print('MATCHED: %s' % f)
-    input('Press enter to close')
+    eval(input('Press enter to close'))
     sys.exit(1)
 
 for f in found:
@@ -144,5 +144,5 @@ print("Created %s with %u of %u matching logs" % (results, len(found), logcount)
 print("Please send this file to %s" % email)
 print('==============================================')
 
-input('Press enter to close')
+eval(input('Press enter to close'))
 sys.exit(0)

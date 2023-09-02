@@ -3,7 +3,7 @@
 '''
 estimate COMPASS_MOT_* parameters for throttle based compensation
 '''
-from __future__ import print_function
+
 from builtins import range
 import math
 
@@ -74,7 +74,7 @@ def magfit(logfile):
     (cmot,r) = fit_data(data)
     print("Fit    : %s  r: %s" % (cmot,r))
 
-    x = range(len(data))
+    x = list(range(len(data)))
     errors = mag_error((cmot.x,cmot.y,cmot.z,r), data)
 
     import matplotlib.pyplot as plt

@@ -3,7 +3,7 @@
 '''
 convert a MAVLink tlog file to a MATLab mfile
 '''
-from __future__ import print_function
+
 from builtins import range
 
 import os

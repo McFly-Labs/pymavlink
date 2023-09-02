@@ -10,7 +10,7 @@ Instructions for use:
 2. convert binary stream int .pcap file format (see ../examples/mav2pcap.py)
 3. open the pcap file in Wireshark
 '''
-from __future__ import print_function
+
 
 from builtins import range
 
@@ -476,7 +476,7 @@ def generate(basename, xml):
         for i in range(0, len(m.fieldnames)):
             m.order_map[i] = m.ordered_fieldnames.index(m.fieldnames[i])
 
-    print("Generating %s" % filename)
+    print(("Generating %s" % filename))
     outf = open(filename, "w")
     generate_preamble(outf)
     generate_msg_table(outf, msgs)
@@ -496,5 +496,5 @@ def generate(basename, xml):
 #    generate_methods(outf, msgs)
     generate_epilog(outf)
     outf.close()
-    print("Generated %s OK" % filename)
+    print(("Generated %s OK" % filename))
 

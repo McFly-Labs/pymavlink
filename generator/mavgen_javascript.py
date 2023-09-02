@@ -5,7 +5,7 @@ parse a MAVLink protocol XML file and generate a Node.js javascript module imple
 Based on original work Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 
 from builtins import range
 
@@ -565,7 +565,7 @@ def generate(basename, xml):
         for i in range(0, len(m.fieldnames)):
             m.order_map[i] = m.ordered_fieldnames.index(m.fieldnames[i])
 
-    print("Generating %s" % filename)
+    print(("Generating %s" % filename))
     outf = open(filename, "w")
     generate_preamble(outf, msgs, filelist, xml[0])
     generate_enums(outf, enums)
@@ -574,4 +574,4 @@ def generate(basename, xml):
     generate_mavlink_class(outf, msgs, xml[0])
     generate_footer(outf)
     outf.close()
-    print("Generated %s OK" % filename)
+    print(("Generated %s OK" % filename))

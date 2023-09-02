@@ -5,7 +5,7 @@ generate a MAVLink test suite
 Copyright Andrew Tridgell 2011
 Released under GNU GPL version 3 or later
 '''
-from __future__ import print_function
+
 from builtins import range
 
 import sys
@@ -125,16 +125,16 @@ for fname in args.definitions:
 if mavparse.check_duplicates(msgs):
     sys.exit(1)
 
-print("Found %u MAVLink message types" % len(msgs))
+print(("Found %u MAVLink message types" % len(msgs)))
 
-print("Generating python %s" % (args.output+'.py'))
+print(("Generating python %s" % (args.output+'.py')))
 outf = open(args.output + '.py', "w")
 generate_methods_python(outf, msgs)
 outf.close()
 
-print("Generating C %s" % (args.output+'.h'))
+print(("Generating C %s" % (args.output+'.h')))
 outf = open(args.output + '.h', "w")
 generate_methods_C(outf, msgs)
 outf.close()
 
-print("Generated %s OK" % args.output)
+print(("Generated %s OK" % args.output))
