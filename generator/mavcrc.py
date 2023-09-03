@@ -26,7 +26,6 @@ class x25crc(object):
         accum = self.crc
         import array
         bytes = array.array('B',list(buf.encode()))
-        #FIX needed - fromstring() deprecated in python3.2, removed in 3.6
+        #FIXED? - fromstring() deprecated in python3.2, removed in 3.6
         #bytes.fromstring(buf)
-        #bytes += buf.encode()
         self.accumulate(bytes)
